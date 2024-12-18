@@ -6,10 +6,10 @@ import (
 )
 
 type UserService struct {
-	repo *repository.UserRepository
+	repo repository.UserRepositoryInterface
 }
 
-func NewUserService(repo *repository.UserRepository) *UserService {
+func NewUserService(repo repository.UserRepositoryInterface) *UserService {
 	return &UserService{repo: repo}
 }
 
@@ -18,5 +18,8 @@ func (s *UserService) GetUsers() ([]domain.User, error) {
 }
 
 func (s *UserService) CreateUser(user *domain.User) error {
+	if err := user.Validate(); err != nil {
+		return err
+	}
 	return s.repo.Create(user)
 }
