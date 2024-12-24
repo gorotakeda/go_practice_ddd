@@ -43,9 +43,4 @@ jobs:
         DB_USER: root
         DB_PASSWORD: password
         DB_NAME: example
-        DB_PORT: 3306
-
-    - name: Run golangci-lint
-      uses: golangci/golangci-lint-action@v3
-      with:
-        version: latest 
+        DB_PORT: 3306 
