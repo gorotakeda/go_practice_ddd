@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"github.com/goro/go_practice_ddd/handler"
 	"github.com/goro/go_practice_ddd/infrastructure"
 	"github.com/goro/go_practice_ddd/repository"
@@ -31,5 +32,7 @@ func main() {
 	router.POST("/users", userHandler.CreateUser)
 
 	// サーバー起動
-	router.Run(":8080")
+	if err := router.Run(":8080"); err != nil {
+		log.Fatal("Failed to start server:", err)
+	}
 }
